@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>실습2</title>
+    <style>
+      div{
+        text-align: center;
+      }
+
+      .blue{
+        position: relative;
+        border: 1px solid black;
+        width: 250px;
+        height: 50px;
+        line-height: 50px;
+        background-color: blue;
+      }
+
+      .red{
+        position: relative;
+        border: 1px solid black;
+        width: 50px;
+        height: 300px;
+        line-height: 300px;
+        background-color: red;
+      }
+
+      .green{
+        position: absolute;
+        border: 1px solid black;
+        width: 50px;
+        height: 300px;
+        top: 0;
+        left: 250px;
+        line-height: 300px;
+        background-color: greenyellow;
+      }
+
+      .pink{
+        position: absolute;
+        border: 1px solid black;
+        width: 250px;
+        height: 50px;
+        top: 250px;
+        left: 50px;
+        line-height: 50px;
+        background-color: magenta;
+      }
+
+      .image{
+        position: absolute;
+        border: 1px solid black;
+        left: 50px;
+        top: 0;
+        width: 200px;
+        height: 250px;
+      }
+    </style>
+</head>
+<body>
+  <div class="blue">1
+    <div class="green">2</div>
+  </div>
+  <div class="red">4
+    <div class="pink">3</div>
+    <div class="image"><img src="Flower1.png" width="100%" alt="flower"></div>
+  </div>
+</body>
+</html>
