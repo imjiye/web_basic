@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>exam3</title>
+    <script>
+      // 1. 텍스트 값을 입력 받고
+      // 2. 값이 없으면 “텍스트값을 입력해 주세요” 경고창을 띄우고
+      // 3. 값이 있으면 가운데 크게 텍스트를 표시해 주고
+      // 4. 바로 아래에 빨강/파랑/초록 글자가 쓰여진 버튼이 생긴다.
+      // 5. 빨강 파랑 초록 이 쓰여진 버튼을 누르면
+      // 6. “무슨무슨 색으로 변경됩니다.” 라고 경고창이 뜨면서
+      // 7. 입력된 텍스트의 색이 변경되게 해봅시다.
+        function exam() {
+            let text = prompt("텍스트 입력하기");
+            if (text === null || text === "") {
+                alert("텍스트 값을 입력해주세요");
+            }
+            else{
+              const  div = document.getElementById("textTag");
+              div.innerHTML = text;
+
+              const result = document.getElementById("result");
+              result.classList.remove('hidden');
+            }
+        }
+
+        // function colorChange_R(){
+        //   alert("빨간색으로 변경됩니다.")
+        //   const div = document.getElementById("textTag");
+        //   div.style.color = "red";
+        // }
+        //
+        // function colorChange_G(){
+        //   alert("초록색으로 변경됩니다.")
+        //   const div = document.getElementById("textTag");
+        //   div.style.color = "green";
+        // }
+        //
+        // function colorChange_B(){
+        //   alert("파란색으로 변경됩니다.")
+        //   const div = document.getElementById("textTag");
+        //   div.style.color = "blue";
+        // }
+
+        function colorChange(color){
+            const div = document.getElementById("textTag");
+            div.style.color = color;
+
+            alert(`${color}색으로 변경됩니다.`);
+        }
+
+    </script>
+    <style>
+      #textTag{
+        font-size: xxx-large;
+
+      }
+
+      .hidden{
+        visibility: hidden;
+      }
+
+      .center{
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+  <button onclick="exam()">click</button>
+  <div id="result" class="center hidden">
+    <div id="textTag"></div>
+    <button id="btnR" onclick="colorChange('red')">빨강</button>
+    <button id="btnB" onclick="colorChange('blue')">파랑</button>
+    <button id="btnG" onclick="colorChange('green')">초록</button>
+  </div>
+</body>
+</html>

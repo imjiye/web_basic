@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exam5</title>
+    <script>
+        //1. 배경이 회색이고 텍스트가 하얀 메뉴가 3개 있습니다.
+        //2. 마우스로 메뉴에 마우스를 대면 한 메뉴만 배경이 하얗게 외곽선은 검게 텍스트는 검게 변합니다.
+        //3. 다른메뉴 대면 아까 댄 메뉴는 원래대로 돌아오고 클릭한 메뉴가 변화합니다.
+
+        function Clicked(target) {
+            const buttons = document.getElementsByTagName("div");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].className = "normal";
+            }
+            target.className = "pressed";
+        }
+
+        function mouseOver(target)
+        {
+            const buttons = document.getElementsByTagName("div");
+            target.className = "normal";
+        }
+    </script>
+
+    <style>
+        div {
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .normal {
+            background-color: gray;
+            color: white;
+        }
+
+        .pressed {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="normal" onmouseover="Clicked(this)" onmouseout="mouseOver(this)">html</div>
+    <div class="normal" onmouseover="Clicked(this)" onmouseout="mouseOver(this)">css</div>
+    <div class="normal" onmouseover="Clicked(this)" onmouseout="mouseOver(this)">javascript</div>
+</body>
+</html>
