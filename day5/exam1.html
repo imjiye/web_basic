@@ -13,20 +13,30 @@
         // 5. 빨강 파랑 초록 이 쓰여진 버튼을 누르면
         // 6. “무슨무슨 색으로 변경됩니다.” 라고 경고창이 뜨면서
         // 7. 입력된 텍스트의 색이 변경되게 해봅시다.
-        function exam() {
-            let text = prompt("텍스트 입력하기");
-            if (text === null || text === "") {
-                alert("텍스트 값을 입력해주세요");
-            }
-            else{
-                $("#textTag").innerHTML(text);
+        function inputText() {
+            const text = prompt("텍스트를 입력해 주세요");
 
-                // const  div = document.getElementById("textTag");
-                // div.innerHTML = text;
-
-                const result = document.getElementById("result");
-                result.classList.remove('hidden');
+            if (text === null) {
+                alert("텍스트값을 입력해 주세요");
+                return;
             }
+
+            $("#text").html(text);
+            // const textDiv = document.getElementById("text");
+            // textDiv.innerHTML = text;
+
+            $("#result").attr("class", "center");
+            // const result = document.getElementById("result");
+            // result.className = "center";
+
+        }
+
+        function changeColor(color) {
+            $("#text").css("color", color);
+            // const text = document.getElementById("text");
+            // text.style.color = color;
+
+            alert(`${color}색으로 변경됩니다`);
         }
 
         // function colorChange_R(){
@@ -47,38 +57,31 @@
         //   div.style.color = "blue";
         // }
 
-        function colorChange(color){
-            $("#text").css("color", color);
-            // const div = document.getElementById("textTag");
-            // div.style.color = color;
-
-            alert(`${color}색으로 변경됩니다.`);
-        }
-
     </script>
     <style>
-        #textTag{
-            font-size: xxx-large;
-
-        }
-
-        .hidden{
+        .hidden {
             visibility: hidden;
         }
 
-        .center{
+        .center {
             text-align: center;
-            visibility: visible;
+        }
+
+        #text{
+            font-size: xxx-large;
         }
     </style>
 </head>
 <body>
-<button onclick="exam()">click</button>
-<div id="result" class="hidden">
-    <div id="textTag"></div>
-    <button id="btnR" onclick="colorChange('red')">빨강</button>
-    <button id="btnB" onclick="colorChange('blue')">파랑</button>
-    <button id="btnG" onclick="colorChange('green')">초록</button>
+<button onclick="inputText()">텍스트 입력</button>
+
+<div id="result" class="center hidden">
+    <div id="text"></div>
+    <div>
+        <button onclick="changeColor('red')">빨강</button>
+        <button onclick="changeColor('blue')">파랑</button>
+        <button onclick="changeColor('green')">초록</button>
+    </div>
 </div>
 </body>
 </html>
