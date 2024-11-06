@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script>
+      function insert(){
+        $("#div2").append("<div>짜잔!</div>");
+      }
+
+      function changeWidth()
+      {
+          const width = $("#width").val();
+
+          $("#image").attr("width", width);
+      }
+
+      function ChangeBlur(target){
+          console.log(target.checked);
+
+          if(target.checked){
+              $("#image").css("filter", "blur(5px)");
+          }
+          else{
+              $("#image").css("filter", "blur(0px)");
+          }
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if(event.key === "ArrowLeft")
+        {
+          console.log("왼쪽");
+        } else if(event.key === "ArrowRight") {
+          console.log("오른쪽");
+        } else if(event.key === "ArrowUp") {
+          console.log("위쪽");
+        } else if(event.key === "ArrowDown") {
+          console.log("아래쪽");
+        }
+      });
+
+      $(() => {
+        console.log("aa");
+
+        // document.getElementsByTagName("div1");
+        let div1 = $("div1");
+        console.log(div1);
+
+        // document.getElementById("div2");
+        let div2 = $("#div2");
+        console.log(div2);
+
+        // document.getElementsByClassName("div3");
+        let div3 = $(".div3");
+        console.log(div3);
+      });
+    </script>
+    <style>
+        .filter{
+            filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+  <div>div1</div>
+  <div id="div2">div2</div>
+<!-- 여기에 뭐 넣고 싶다-->
+  <div class="div3">div3</div>
+  <button onclick="insert()">div2와 div3 사이에 뭔가를 넣는 버튼</button>
+
+  <br>
+
+  <img src="WE.png" width="300" id="image">
+
+  <br>
+
+  <label>
+      Size :
+      <input type="text" id="width">
+  </label>
+  <button onclick="changeWidth()">사이즈 바꾸기</button>
+
+  <br>
+
+    <label>
+        <input type="checkbox" onchange="ChangeBlur(this)">blur
+    </label>
+
+</body>
+</html>
