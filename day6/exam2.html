@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>exam2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #background{
+            background-image: url("assets/marioback.jpg");
+            background-size: cover;
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        #player{
+            /*background-image: url("assets/Yoshi.png");*/
+            /*background-size: cover;*/
+            position: absolute;
+            bottom: 160px;
+            left: 50px;
+        }
+
+        .enemy{
+            position: absolute;
+            right: 180px;
+            bottom: 170px;
+        }
+    </style>
+    <script>
+        const playerWidth = 50;
+        const playerHeight = 50;
+
+        let enemyRight = 180;
+
+        let isJumping = false;
+        let isSpawning = false;
+
+        function jump(){
+            if(isJumping === true){
+                return;
+            }
+
+            isJumping = true;
+            $("#player").animate({
+                bottom: "+=150px"
+            }, 500).animate({
+               bottom: "-=150px"
+            }, 500, () => {
+                isJumping = false;
+            });
+        }
+
+        function moveEnemy(){
+            $(".enemy").css("right", "+=5px");
+
+            checkEnemyBounds();
+        }
+
+        function checkEnemyBounds(){
+            const enemy = $(".enemy");
+            const enemyLeft = parseInt(enemy.css("left")); // "0px" = 0
+
+            if(enemyLeft < 180){
+                respawnEnemy();
+            }
+        }
+
+        function respawnEnemy(){
+            if(isSpawning){
+                return;
+            }
+
+            isSpawning = true;
+            setTimeout(() => {
+                $(".enemy").css("right", "180px");
+                isSpawning = false;
+            }, 1000);
+        }
+
+        function checkGameOver(){
+            const player = document.getElementById("player");
+            const enemy = document.getElementById("enemy");
+
+            let isGameOver = false;
+
+            if(checkCollision(player, enemy)){
+                console.log("Game Over");
+                isGameOver = true;
+            }
+            return isGameOver;
+        }
+
+        function checkCollision(div1, div2){
+            const rect1 = div1.getBoundingClientRect();
+            const rect2 = div2.getBoundingClientRect();
+
+            return !(
+                rect1.right < rect2.left ||  // div1이 div2의 왼쪽에 있는 경우
+                rect1.left > rect2.right ||  // div1이 div2의 오른쪽에 있는 경우
+                rect1.bottom < rect2.top ||  // div1이 div2의 위쪽에 있는 경우
+                rect1.top > rect2.bottom     // div1이 div2의 아래쪽에 있는 경우
+            );
+        }
+
+        function gameLoop(){
+            moveEnemy();
+            if(checkGameOver()){
+                return;
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === " ") {
+                console.log("점프");
+                jump();
+            }
+        });
+
+        // onload
+        $(() => {
+            gameLoop();
+        })
+    </script>
+</head>
+<body>
+    <div id="background"></div>
+    <div id="player">
+        <img src="assets/Yoshi.png" width="50px" height="50px">
+    </div>
+    <div class="enemy" id="enemy">
+        <img src="assets/goomba.png" width="50px" height="50px">
+    </div>
+</body>
+</html>
