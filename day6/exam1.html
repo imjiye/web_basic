@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>exam1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #background{
+            background-image: url("assets/Background.jpg");
+            background-size: cover;
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        #player{
+            /*background-image: url("assets/Yoshi.png");*/
+            /*background-size: cover;*/
+            position: absolute;
+            visibility: hidden;
+            bottom: 300px;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        const bgWidth = 500;
+        const bgHeight = 300;
+
+        const playerWidth = 50;
+        const playerHeight = 50;
+
+        let score = 0;
+
+        //onload : 화면 다 그리고 실행
+        $(() => {
+            initGame();
+        })
+
+        function initGame(){
+            score = 0;
+
+            setTimeout(() => {
+                $("#player").css("visibility", "visible");
+            }, 3000);
+        }
+
+        function moveLeft(){
+            $("#player").css("left", "-=50px");
+        }
+        function moveRight(){
+            $("#player").css("left", "+=50px");
+        }
+        function moveUp(){
+            $("#player").css("top", "-=50px");
+        }
+        function moveDown(){
+            $("#player").css("top", "+=50px");
+        }
+
+        function checkBounds(){
+            const player = $("#player");
+            const playerLeft = parseInt(player.css("left")); // "0px" = 0
+            const playerTop = parseInt(player.css("top"));
+
+            if(player.offset().left < 0){
+                player.css("left", "0px");
+            }else if(playerLeft + playerWidth > bgWidth){
+                player.css("left", "450px");
+            }else if(playerTop < 0) {
+                player.css("top", "0px");
+            }else if(playerTop + playerHeight > bgHeight){
+                player.css("top", "250px");
+            }
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if(event.key === "ArrowLeft") {
+                console.log("왼쪽");
+                moveLeft();
+            } else if(event.key === "ArrowRight") {
+                console.log("오른쪽");
+                moveRight();
+            } else if(event.key === "ArrowUp") {
+                console.log("위쪽");
+                moveUp();
+            } else if(event.key === "ArrowDown") {
+                console.log("아래쪽");
+                moveDown();
+            }
+            checkBounds();
+        });
+    </script>
+</head>
+<body>
+    <div id="background"></div>
+    <div id="player">
+        <img src="assets/Yoshi.png" width="50px" height="50px">
+    </div>
+</body>
+</html>
