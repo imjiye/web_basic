@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>effect</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #player{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+    <script>
+        function hide(){
+            $("#player").hide(1000);
+        }
+
+        function show(){
+            $("#player").show(1000);
+        }
+
+        function fadeout(){
+            $("#player").fadeOut(1000);
+        }
+
+        function fadein(){
+            $("#player").fadeIn(1000);
+        }
+
+        function slideDown(){
+            $("#player").slideDown(1000);
+        }
+
+        function slideUp(){
+            $("#player").slideUp(1000);
+        }
+
+        function move(){
+            $("#player").animate({
+                left: "+=50px",
+                top: "-=50px"
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="player">Effect Test</div>
+    <button onclick="hide()">hide</button>
+    <button onclick="show()">show</button>
+    <br>
+    <button onclick="fadeout()">fadeout</button>
+    <button onclick="fadein()">fadein</button>
+    <br>
+    <button onclick="slideDown()">slideDown</button>
+    <button onclick="slideUp()">slideUp</button>
+    <br>
+    <button onclick="move()">move</button>
+</body>
+</html>
